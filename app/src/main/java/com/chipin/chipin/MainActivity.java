@@ -1,5 +1,6 @@
 package com.chipin.chipin;
 
+
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -15,6 +16,8 @@ import com.chipin.chipin.view.SDGObject;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
