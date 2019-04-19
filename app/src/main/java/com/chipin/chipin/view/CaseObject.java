@@ -10,12 +10,13 @@ public class CaseObject {
     int progressTarget;
     String caseLocation;
     String caseDetails;
+    ArrayList<SDGObject> sdgObjects;
 
     public CaseObject(){
 
     }
 
-    public CaseObject(ArrayList<String> caseImages, ArrayList<String> caseGoals, String caseTitle, int progressReached, int progressTarget, String caseLocation, String caseDetails) {
+    public CaseObject(ArrayList<String> caseImages, ArrayList<String> caseGoals, String caseTitle, int progressReached, int progressTarget, String caseLocation, String caseDetails, ArrayList<SDGObject> sdgObjects) {
         this.caseImages = caseImages;
         this.caseGoals = caseGoals;
         this.caseTitle = caseTitle;
@@ -23,6 +24,7 @@ public class CaseObject {
         this.progressTarget = progressTarget;
         this.caseLocation = caseLocation;
         this.caseDetails = caseDetails;
+        this.sdgObjects = sdgObjects;
     }
 
     public ArrayList<String> getCaseImages() {
@@ -79,5 +81,13 @@ public class CaseObject {
 
     public void setCaseDetails(String caseDetails) {
         this.caseDetails = caseDetails;
+    }
+
+    public ArrayList<SDGObject> getSdgObjects() {
+        return sdgObjects;
+    }
+
+    public void setSdgObjects(ArrayList<SDGObject> sdgObjects) {
+        this.sdgObjects = sdgObjects;
     }
 }

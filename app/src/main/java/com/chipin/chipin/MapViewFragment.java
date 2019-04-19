@@ -3,17 +3,22 @@ package com.chipin.chipin;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.chipin.chipin.adapters.MapCasesAdapter;
+import com.chipin.chipin.view.CaseObject;
+import com.chipin.chipin.view.SDGObject;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationServices;
@@ -25,6 +30,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import java.util.ArrayList;
 
 public class MapViewFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
@@ -38,17 +45,40 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
     private Location mLastKnownLocation;
     private String TAG = "MapsTesting";
     private View view;
-
+    ViewPager viewPager;
+    MapCasesAdapter mapCasesAdapter;
+    private ArrayList<CaseObject> cases;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = inflater.inflate(R.layout.activity_map_view, container, false);
+        view = inflater.inflate(R.layout.fragment_map_view, container, false);
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
+        cases = new ArrayList<>();
+        seed();
+
+        viewPager = view.findViewById(R.id.viewpager);
+
+        mapCasesAdapter = new MapCasesAdapter(getActivity(), cases);
+
+        viewPager.setAdapter(mapCasesAdapter);
+
+        float density = getResources().getDisplayMetrics().density;
+        int partialWidth =(int) (16 * density); // 16dp
+        int pageMargin = (int)(32 * density); // 8dp
+
+        int viewPagerPadding = partialWidth + pageMargin;
+
+        viewPager.setPageMargin(pageMargin);
+        viewPager.setPadding(32, 32, viewPagerPadding*3, 32);
+        viewPager.setClipToPadding(false);
+
         mapFragment.getMapAsync(this);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+
 
         return view;
     }
@@ -159,5 +189,74 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+
+
+
+    public void seed(){
+        SDGObject zeroHunger = new SDGObject();
+        zeroHunger.setSdgTitle("Zero Hunger");
+        zeroHunger.setSdgDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
+        zeroHunger.setSdgImage("url");
+
+        SDGObject womenEmpowerment = new SDGObject();
+        womenEmpowerment.setSdgTitle("Women Empowerment");
+        womenEmpowerment.setSdgDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
+        womenEmpowerment.setSdgImage("url");
+
+        CaseObject quenaWaterways = new CaseObject();
+        quenaWaterways.setCaseTitle("Quena Waterway Project");
+        quenaWaterways.setCaseDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
+        ArrayList<String> goals = new ArrayList();
+        goals.add("Buy cement");
+        goals.add("build construction base");
+        goals.add("connect to water link");
+
+        quenaWaterways.setCaseGoals(goals);
+
+        quenaWaterways.setCaseLocation("Quena, Egypt");
+        quenaWaterways.setProgressReached(0);
+        quenaWaterways.setProgressTarget(10000);
+
+        ArrayList<String> images = new ArrayList<>();
+        images.add("img1");
+        images.add("img2");
+        quenaWaterways.setCaseImages(images);
+
+        //--------------------------------
+        ArrayList<SDGObject> sdgObjects = new ArrayList<>();
+        sdgObjects.add(zeroHunger);
+        //---------------------------------
+
+        quenaWaterways.setSdgObjects(sdgObjects);
+
+
+
+        CaseObject aswanRevolvingFund = new CaseObject();
+        aswanRevolvingFund.setCaseTitle("Quena Waterway Project");
+        aswanRevolvingFund.setCaseDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+
+        ArrayList<String> goals2 = new ArrayList();
+        goals.add("Buy cement");
+        goals.add("build construction base");
+        goals.add("connect to water link");
+
+        aswanRevolvingFund.setCaseGoals(goals);
+
+        aswanRevolvingFund.setCaseLocation("Quena, Egypt");
+        aswanRevolvingFund.setProgressReached(0);
+        aswanRevolvingFund.setProgressTarget(10000);
+
+        ArrayList<String> images2 = new ArrayList<>();
+        images.add("img1");
+        images.add("img2");
+        aswanRevolvingFund.setCaseImages(images);
+
+        aswanRevolvingFund.setSdgObjects(sdgObjects);
+
+
+        cases.add(quenaWaterways);
+        cases.add(aswanRevolvingFund);
     }
 }
