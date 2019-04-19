@@ -1,21 +1,59 @@
 package com.chipin.chipin;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.chipin.chipin.Fragments.ExploreFragment;
+import com.chipin.chipin.Fragments.HomeFragment;
+import com.chipin.chipin.databinding.ActivityMainBinding;
 import com.chipin.chipin.view.CaseObject;
 import com.chipin.chipin.view.SDGObject;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    ActivityMainBinding binding;
+    ViewPagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(),"Home");
+        adapter.addFragment(new ExploreFragment(),"Explore");
+        adapter.addFragment(new HomeFragment(),"Dashboard");
 
 
+        binding.mainContainer.setAdapter(adapter);
+        binding.mainContainer.setPagingEnabled(false);
+        binding.mainContainer.setOffscreenPageLimit(3);
+
+//        binding.mainContainer.addO
+
+        binding.navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.navigation_home:
+                        binding.mainContainer.setCurrentItem(0, false);
+                        break;
+                    case R.id.navigation_explore:
+                        binding.mainContainer.setCurrentItem(1, false);
+                        break;
+                    case R.id.navigation_dashbord:
+                        binding.mainContainer.setCurrentItem(2, false);
+                        break;
+                }
+                return true;
+            }
+        });
 
     }
 
