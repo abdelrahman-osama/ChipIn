@@ -1,5 +1,6 @@
 package com.chipin.chipin;
 
+
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -16,6 +17,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
         adapter.addFragment(new HomeFragment(),"Home");
-        adapter.addFragment(new ExploreFragment() ,"Explore");
+        adapter.addFragment(new ExploreFragment(),"Explore");
         adapter.addFragment(new HomeFragment(),"Dashboard");
 
 
