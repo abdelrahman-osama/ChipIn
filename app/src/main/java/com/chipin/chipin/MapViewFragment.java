@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapView extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapViewFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
 
     private static final int DEFAULT_ZOOM = 10;
@@ -44,7 +44,6 @@ public class MapView extends Fragment implements OnMapReadyCallback, GoogleMap.O
                              final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.activity_map_view, container, false);
-//        setContentView(R.layout.activity_map_view);
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.map);
 
