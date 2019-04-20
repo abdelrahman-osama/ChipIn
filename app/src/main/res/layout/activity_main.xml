@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
 
+
     <com.chipin.chipin.CustomViewPager
         android:id="@+id/main_container"
         android:layout_width="match_parent"
