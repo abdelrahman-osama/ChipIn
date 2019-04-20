@@ -28,6 +28,7 @@
         app:layout_constraintTop_toTopOf="@+id/background"/>
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -38,7 +39,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:id="@+id/title"
@@ -52,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="start"
+                android:gravity="center"
                 android:layout_gravity="start"
                 android:layout_marginTop="8dp">
                 <ImageView
@@ -68,20 +70,6 @@
                 android:layout_marginStart="8dp"/>
             </LinearLayout>
 
-            <androidx.core.widget.ContentLoadingProgressBar
-                android:id="@+id/progressbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:progress="25"
-                android:progressTint="@color/green"
-                />
-            <TextView
-                android:id="@+id/progress_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:text="3450/5300EGP"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -95,5 +83,33 @@
                 android:src="@drawable/ic_heart"
                 android:background="@color/transparent"/>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progress="75"
+            android:progressTint="@color/green" />
+
+        <TextView
+            android:id="@+id/progress_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="3450/5300EGP"
+            android:textSize="12sp"
+            android:paddingBottom="10dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

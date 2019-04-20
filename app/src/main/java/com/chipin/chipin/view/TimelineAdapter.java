@@ -7,6 +7,7 @@ import android.graphics.drawable.VectorDrawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -23,10 +24,12 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimeLi
     ArrayList<TimeLineModel> timeline;
     Activity context;
     private String TAG = "RecyclerAdaperTest";
+    boolean setDate;
 
-    public TimelineAdapter(ArrayList<TimeLineModel> timeline, Activity context){
+    public TimelineAdapter(ArrayList<TimeLineModel> timeline, Activity context, boolean setDate){
         this.timeline=timeline;
         this.context = context;
+        this.setDate = setDate;
     }
 
     @NonNull
@@ -44,16 +47,24 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimeLi
 
 //        if(holder.mTimelineView!=null)
         if(timeLineModel.getOrderStatus() == OrderStatus.ACTIVE){
-            Drawable x = ContextCompat.getDrawable(context, R.drawable.ic_marker_active);
-            holder.mTimelineView.setMarker(x, R.color.colorGrey300);
+            Drawable x = ContextCompat.getDrawable(context, R.drawable.ic_marker);
+            holder.mTimelineView.setMarker(x);
         }
         if(timeLineModel.getOrderStatus() == OrderStatus.INACTIVE){
-            holder.mTimelineView.setMarker(holder.itemView.getContext().getResources().getDrawable(R.drawable.ic_marker_inactive), R.color.colorGrey300);
+            holder.mTimelineView.setMarker(ContextCompat.getDrawable(context,R.drawable.ic_marker_inactive));
         }
         if(timeLineModel.getOrderStatus() == OrderStatus.COMPLETED){
-            holder.mTimelineView.setMarker(holder.itemView.getContext().getResources().getDrawable(R.drawable.ic_marker), R.color.colorGrey300);
+            holder.mTimelineView.setMarker(ContextCompat.getDrawable(context,R.drawable.ic_marker_active));
         }
         holder.title.setText(timeline.get(position).getMessage());
+
+        if(setDate){
+            holder.dateLayout.setVisibility(View.VISIBLE);
+            holder.date.setText(timeline.get(position).getDate());
+        }else{
+            holder.dateLayout.setVisibility(View.GONE);
+        }
+
 //        timeLineModel.setMessage();
     }
 
@@ -71,11 +82,15 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimeLi
     public class TimeLineViewHolder extends RecyclerView.ViewHolder {
         public TimelineView mTimelineView;
         public AppCompatTextView title;
+        public AppCompatTextView date;
+        public LinearLayout dateLayout;
 
         public TimeLineViewHolder(View itemView, int viewType) {
             super(itemView);
             mTimelineView = (TimelineView) itemView.findViewById(R.id.timeline);
             title = itemView.findViewById(R.id.text_timeline_title);
+            date = itemView.findViewById(R.id.text_timeline_date);
+            dateLayout = itemView.findViewById(R.id.layout_timeline_date);
             mTimelineView.initLine(viewType);
 
 

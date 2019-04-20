@@ -11,24 +11,61 @@
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <!--<androidx.appcompat.widget.Toolbar-->
+        <!--android:id="@+id/toolbar"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="?attr/actionBarSize"-->
+        <!--android:background="@color/white"-->
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+        <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
+        <!--app:title="ChipIn"-->
+        <!--android:ellipsize="end"-->
+        <!---->
+        <!--&gt;-->
+
+
+        <!--</androidx.appcompat.widget.Toolbar>-->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Explore"
-            android:ellipsize="end"
-            >
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:clipToPadding="false">
 
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_search"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ChipIn"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:layout_weight="8"
+                android:textColor="#000"/>
+            <ImageButton
+                android:id="@+id/inbox"
+                android:layout_width="24dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_messages"/>
+        </LinearLayout>
 
-        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -46,9 +83,13 @@
 
 
         android:orientation="vertical">
-    <include layout="@layout/component_explore_card"/>
+    <include
+        android:id="@+id/card1"
+        layout="@layout/component_explore_card"/>
 
-    <include layout="@layout/component_explore_card"/>
+    <include
+        android:id="@+id/card2"
+        layout="@layout/component_explore_card"/>
 
     </LinearLayout>
 

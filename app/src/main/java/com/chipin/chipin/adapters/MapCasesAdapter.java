@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.chipin.chipin.ExploreActivity;
 import com.chipin.chipin.R;
 import com.chipin.chipin.view.CaseObject;
 
@@ -81,12 +83,27 @@ public class MapCasesAdapter extends PagerAdapter {
 
         ImageView imageView = itemView.findViewById(R.id.background);
 
+        if(position == 0){
+            ((ImageView)itemView.findViewById(R.id.background)).setImageDrawable(ContextCompat.getDrawable(context,R.drawable.image2));
+            ((ImageView)itemView.findViewById(R.id.badge)).setImageDrawable(ContextCompat.getDrawable(context,R.drawable.gender_equality));
+            ((TextView)itemView.findViewById(R.id.title)).setText("Help Om Islam Out: Chip In Buying Her the Poultry She Needs");
+
+        }
+
         container.addView(itemView);
 
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("CaseAdapter", "onClick: card map item was clicked" + position);
+                Intent intent = new Intent(context, ExploreActivity.class);
+
+                if(position == 0){
+                    intent.putExtra("case", 2);
+                }else intent.putExtra("case", -1);
+
+                context.startActivity(intent);
+
             }
         });
 

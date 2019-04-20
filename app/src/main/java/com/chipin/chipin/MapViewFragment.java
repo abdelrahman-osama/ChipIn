@@ -1,6 +1,7 @@
 package com.chipin.chipin;
 
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -26,8 +27,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
@@ -72,6 +76,23 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
         viewPager.setPageMargin(pageMargin);
         viewPager.setPadding(32, 32, viewPagerPadding * 3, 32);
         viewPager.setClipToPadding(false);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+            public void onPageSelected(int position) {
+                // Check if this is the page you want.
+                if(mMap == null){
+                    return;
+                }
+                if(position == 0){
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney, 14.0f));
+                }else{
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney2, 14.0f));
+                }
+            }
+        });
 
         mapFragment.getMapAsync(this);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -125,7 +146,8 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
         }
         updateLocationUI();
     }
-
+    LatLng sydney;
+    LatLng sydney2;
     private void updateLocationUI() {
         if (mMap == null) {
             return;
@@ -143,6 +165,39 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
         } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
+
+
+        sydney = new LatLng(30.789514, 31.352167);
+        sydney2 = new LatLng(30.805950, 31.324699);
+        mMap.addMarker(new MarkerOptions().position(sydney)
+                .title("Sanafa"));
+
+        mMap.addMarker(new MarkerOptions().position(sydney2)
+                .title("Damas"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney2, 14.0f));
+
+
+        CircleOptions circleOptions = new CircleOptions()
+                .center(new LatLng(30.805950, 31.324699))
+                .strokeWidth(0)
+                .strokeColor(Color.argb(90, 193, 51, 19))
+                .fillColor(Color.argb(90, 193, 51, 19))
+                .radius(5000); // In meters
+
+// Get back the mutable Circle
+        Circle circle = mMap.addCircle(circleOptions);
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if(marker.getPosition().equals(sydney2)){
+                    viewPager.setCurrentItem(1);
+                }else{
+                    viewPager.setCurrentItem(0);
+                }
+                return false;
+            }
+        });
     }
 
     private void getDeviceLocation() {
@@ -199,7 +254,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
         womenEmpowerment.setSdgImage("url");
 
         CaseObject quenaWaterways = new CaseObject();
-        quenaWaterways.setCaseTitle("Quena Waterway Project");
+        quenaWaterways.setCaseTitle("Damas Needs Your Help: Chip In New Water Tunnels For the Village");
         quenaWaterways.setCaseDetails(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
@@ -227,7 +282,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
         quenaWaterways.setSdgObjects(sdgObjects);
 
         CaseObject aswanRevolvingFund = new CaseObject();
-        aswanRevolvingFund.setCaseTitle("Quena Waterway Project");
+        aswanRevolvingFund.setCaseTitle("Damas Needs Your Help: Chip In New Water Tunnels For the Village");
         aswanRevolvingFund.setCaseDetails(
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 

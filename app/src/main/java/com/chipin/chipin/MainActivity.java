@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.chipin.chipin.Fragments.DashboardFragment;
 import com.chipin.chipin.Fragments.ExploreFragment;
 import com.chipin.chipin.Fragments.HomeFragment;
 import com.chipin.chipin.databinding.ActivityMainBinding;
@@ -28,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         adapter = new ViewPagerAdapter(this.getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "Home");
+        adapter.addFragment(new MapViewFragment(), "Home");
         adapter.addFragment(new ExploreFragment(), "Explore");
-        adapter.addFragment(new HomeFragment(), "Dashboard");
+        adapter.addFragment(new DashboardFragment(), "Dashboard");
 
         binding.mainContainer.setAdapter(adapter);
         binding.mainContainer.setPagingEnabled(false);

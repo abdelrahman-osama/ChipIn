@@ -1,9 +1,14 @@
 package com.chipin.chipin;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,9 +32,37 @@ public class ExploreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explore);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        Bundle b = getIntent().getExtras();
+        int myCase = -1; // or other values
+        if(b != null)
+            myCase = b.getInt("case");
+
+
+        if(myCase == 2){
+            ((ImageView)findViewById(R.id.background)).setImageDrawable(ContextCompat.getDrawable(this,R.drawable.image2));
+            ((ImageView)findViewById(R.id.badge)).setImageDrawable(ContextCompat.getDrawable(this,R.drawable.gender_equality));
+            ((TextView)findViewById(R.id.title)).setText("Help Om Islam Out: Chip In Buying Her the Poultry She Needs");
+            ((TextView)findViewById(R.id.details)).setText("Om Islam is a 40 year old mother of six. She decided to help her husband out on the farm and start her own small-scale poultry farm. In order for her to start her business, she needs your help. The money you chip in will be used to buy Om Islam five chickens and three turkeys, and remember; a little goes a long way.");
+            ((TextView)findViewById(R.id.location)).setText("Tal Haween, Sharqia");
+
+            ((ImageView)findViewById(R.id.badgeSmall)).setImageDrawable(ContextCompat.getDrawable(this,R.drawable.gender_equality));
+            ((TextView)findViewById(R.id.badge_title)).setText("GOAL 5");
+            ((TextView)findViewById(R.id.badge_type)).setText("Achieve gender equality and empower all women and girls");
+            ((TextView)findViewById(R.id.badge_desc1)).setText("Globally, women are just 13 per cent of agricultural land holders. ");
+            ((TextView)findViewById(R.id.badge_desc2)).setText("Gender equality is not only a fundamental human right, but a necessary foundation for a peaceful, prosperous and sustainable world. If women farmers had the same access to resources as men, the number of hungry in the world could be reduced by up to 150 million.");
+
+        }
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         seed();
+
+        findViewById(R.id.chipin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ExploreActivity.this, PaymentActivity.class));
+            }
+        });
 
     }
 
@@ -98,16 +131,22 @@ public class ExploreActivity extends AppCompatActivity {
         // ---------------------
         timeLineModels = new ArrayList<>();
 
-        timeLineModels.add(new TimeLineModel("Start donations", OrderStatus.COMPLETED, "24/1"));
-        timeLineModels.add(new TimeLineModel("Done donations", OrderStatus.COMPLETED, "24/2"));
-        timeLineModels.add(new TimeLineModel("Start project", OrderStatus.ACTIVE, "22/3"));
-        timeLineModels.add(new TimeLineModel("Done project", OrderStatus.INACTIVE, "22/4"));
+        timeLineModels.add(new TimeLineModel("Start donations", OrderStatus.COMPLETED, "04 Apr, 2019"));
+        timeLineModels.add(new TimeLineModel("Done donations", OrderStatus.COMPLETED, "07 Apr, 2019"));
+        timeLineModels.add(new TimeLineModel("Start project", OrderStatus.ACTIVE, "22 Apr, 2019"));
+        timeLineModels.add(new TimeLineModel("Done project", OrderStatus.ACTIVE, "05 May, 2019"));
 
-        timelineAdapter = new TimelineAdapter(timeLineModels, this);
+        timelineAdapter = new TimelineAdapter(timeLineModels, this, false);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(timelineAdapter);
         timelineAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }
