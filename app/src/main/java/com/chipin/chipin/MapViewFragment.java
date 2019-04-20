@@ -1,5 +1,6 @@
 package com.chipin.chipin;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -96,6 +97,13 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback, Goo
 
         mapFragment.getMapAsync(this);
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        view.findViewById(R.id.inbox).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), NotificationsActivity.class));
+            }
+        });
 
         return view;
     }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExploreActivity">
+    tools:context=".PreviousDonations">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -21,7 +21,7 @@
             android:background="@color/white"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:title="Explore">
+            app:title="Previous Donations">
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -55,8 +55,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:src="@drawable/zero_hunger"
-                android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="H,1:1"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/background" />
 
@@ -146,11 +146,6 @@
                 android:orientation="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-                <TextView
-                    android:id="@+id/details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Damas is a village in Mit Ghamr, Dakahlia. The people of Damas live off of the profits they earn through, almost solely, agriculture. Adding a new water tunnel would not only help reduce huge amounts of water that usually would go wasted, it would also help with uniform, consistent, and regulated irrigation of the agricultural lands in Damas, increasing productivity and reducing the cost for its local farmers." />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -162,10 +157,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Project milestones ahead"
+                        android:text="Track your donation"
                         android:textStyle="bold"
-                        android:layout_marginTop="16dp"
                         android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
                         android:textSize="18dp"
                         />
                     <androidx.recyclerview.widget.RecyclerView
@@ -188,7 +183,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/shadow_view"/>
             <LinearLayout
                 android:id="@+id/linearLayout3"
@@ -201,59 +197,54 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingBottom="16dp">
 
-                    <ImageView
-                        android:id="@+id/badgeSmall"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/zero_hunger"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/background" />
+
 
                     <LinearLayout
+                        android:id="@+id/linearLayout4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        app:layout_constraintTop_toBottomOf="@id/divider2"
+                        android:orientation="vertical"
+                        >
 
                         <TextView
-                            android:id="@+id/badge_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="GOAL 2"
-                            android:textSize="18sp"
+                            android:text="Payment information"
                             android:textStyle="bold"/>
-                        <TextView
-                            android:id="@+id/badge_type"
+
+                        <LinearLayout
+                            android:layout_marginTop="16dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Zero Hunger"
-                            />
+                            android:orientation="horizontal"
+                            android:layout_weight="10">
+                            <TextView
+                                android:layout_weight="8"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="Total Amount"
+                                />
+                            <TextView
+                                android:layout_weight="2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:text="100EGP"
+                                android:textStyle="bold"
+                                android:layout_marginStart="8dp"
+                                android:gravity="end"/>
+                        </LinearLayout>
                     </LinearLayout>
 
 
+
                 </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/badge_desc1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="A profound change of the global agriculture system is needed if we are to nourish the 815 million people who are hungry today."
-                        android:textStyle="italic"
-                        android:layout_marginTop="8dp"/>
-                    <TextView
-                        android:id="@+id/badge_desc2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Investments in agriculture are crucial to increasing the capacity for agricultural productivity."/>
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -261,23 +252,12 @@
                 android:id="@+id/divider2"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                android:rotation="180"
-                    android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                android:layout_marginTop="16dp"
                 android:background="@drawable/shadow_view"/>
 
-            <Button
-                android:id="@+id/chipin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chip in"
-                app:layout_constraintTop_toBottomOf="@id/divider2"
-                android:padding="24dp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:textSize="20sp"
-                android:backgroundTint="@color/green"
-                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

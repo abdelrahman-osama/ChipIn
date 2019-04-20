@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chipin.chipin.NotificationsActivity;
+import com.chipin.chipin.PreviousDonations;
 import com.chipin.chipin.R;
 
 /**
@@ -74,6 +75,12 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), NotificationsActivity.class));
+            }
+        });
+        view.findViewById(R.id.pDonations).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), PreviousDonations.class));
             }
         });
         return view;

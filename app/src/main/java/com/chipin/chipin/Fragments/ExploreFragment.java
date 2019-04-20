@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.chipin.chipin.ExploreActivity;
+import com.chipin.chipin.NotificationsActivity;
 import com.chipin.chipin.R;
 
 /**
@@ -92,6 +93,13 @@ public class ExploreFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), ExploreActivity.class);
                 intent.putExtra("case", 2);
                 startActivity(intent);
+            }
+        });
+
+        view.findViewById(R.id.inbox).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), NotificationsActivity.class));
             }
         });
         return view;

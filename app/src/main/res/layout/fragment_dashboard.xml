@@ -284,6 +284,7 @@
                     android:background="#1F000000" />
 
                 <LinearLayout
+                    android:id="@+id/pDonations"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -340,7 +341,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="8"
                         android:padding="14dp"
-                        android:text="Payment Information" />
+                        android:text="Payment information" />
 
                     <ImageView
                         android:layout_width="24dp"
