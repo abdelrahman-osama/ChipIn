@@ -1,6 +1,5 @@
 package com.chipin.chipin;
 
-
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,26 +28,28 @@ public class ExploreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_explore);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         seed();
 
     }
 
-
-    public void seed(){
+    public void seed() {
         SDGObject zeroHunger = new SDGObject();
         zeroHunger.setSdgTitle("Zero Hunger");
-        zeroHunger.setSdgDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
+        zeroHunger.setSdgDetails(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
         zeroHunger.setSdgImage("url");
 
         SDGObject womenEmpowerment = new SDGObject();
         womenEmpowerment.setSdgTitle("Women Empowerment");
-        womenEmpowerment.setSdgDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
+        womenEmpowerment.setSdgDetails(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac tortor dignissim convallis aenean et tortor at risus. Auctor neque vitae tempus quam pellentesque. Turpis cursus in hac habitasse platea dictumst quisque sagittis purus. In eu mi bibendum neque egestas.");
         womenEmpowerment.setSdgImage("url");
 
         CaseObject quenaWaterways = new CaseObject();
         quenaWaterways.setCaseTitle("Quena Waterway Project");
-        quenaWaterways.setCaseDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        quenaWaterways.setCaseDetails(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
         ArrayList<String> goals = new ArrayList();
         goals.add("Buy cement");
@@ -60,8 +61,6 @@ public class ExploreActivity extends AppCompatActivity {
         quenaWaterways.setCaseLocation("Quena, Egypt");
         quenaWaterways.setProgressReached(0);
         quenaWaterways.setProgressTarget(10000);
-
-
 
         ArrayList<String> images = new ArrayList<>();
         images.add("img1");
@@ -75,7 +74,8 @@ public class ExploreActivity extends AppCompatActivity {
 
         CaseObject aswanRevolvingFund = new CaseObject();
         aswanRevolvingFund.setCaseTitle("Quena Waterway Project");
-        aswanRevolvingFund.setCaseDetails("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        aswanRevolvingFund.setCaseDetails(
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
         ArrayList<String> goals2 = new ArrayList();
         goals.add("Buy cement");
@@ -95,9 +95,7 @@ public class ExploreActivity extends AppCompatActivity {
 
         aswanRevolvingFund.setSdgObjects(sdgObjects);
 
-
-
-        //---------------------
+        // ---------------------
         timeLineModels = new ArrayList<>();
 
         timeLineModels.add(new TimeLineModel("Start donations", OrderStatus.COMPLETED, "24/1"));
