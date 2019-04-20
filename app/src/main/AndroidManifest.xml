@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ExploreActivity"></activity>
-        <activity android:name=".MapActivity">
-
+        <activity android:name=".NotificationsActivity"></activity>
+        <activity android:name=".ExploreActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".PaymentActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -27,8 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MapView" />
-
     </application>
 
 </manifest>

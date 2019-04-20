@@ -1,15 +1,20 @@
 package com.chipin.chipin.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.chipin.chipin.ExploreActivity;
 import com.chipin.chipin.R;
 
 /**
@@ -67,7 +72,29 @@ public class ExploreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false);
+        View view = inflater.inflate(R.layout.fragment_explore, container, false);
+
+        ((ImageView)view.findViewById(R.id.card2).findViewById(R.id.background)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.image2));
+        ((ImageView)view.findViewById(R.id.card2).findViewById(R.id.badge)).setImageDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.gender_equality));
+        ((TextView)view.findViewById(R.id.card2).findViewById(R.id.title)).setText("Help Om Islam Out: Chip In Buying Her the Poultry She Needs");
+        ((TextView)view.findViewById(R.id.card2).findViewById(R.id.location)).setText("Tal Haween, Sharqia");
+
+        view.findViewById(R.id.card1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ExploreActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.card2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ExploreActivity.class);
+                intent.putExtra("case", 2);
+                startActivity(intent);
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
